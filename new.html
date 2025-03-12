@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday My Princess!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #initial-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 15px 30px;
+      font-size: 20px;
+      color: #fff;
+      background-color: #ff6f61;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #initial-button:hover {
+      background-color: #ff4a3d;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #balloons {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      height: 100%;
+      animation: rise 10s linear infinite;
+    }
+
+    .balloon {
+      position: absolute;
+      width: 80px;
+      height: 100px;
+      background-color: #ff6f61;
+      border-radius: 50%;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .balloon::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 10px;
+      height: 20px;
+      background-color: #ff6f61;
+      transform: translateX(-50%);
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      width: 2px;
+      height: 50px;
+      background-color: #000;
+      transform: translateX(-50%);
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    #happy-birthday {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
+      color: #ff6f61;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-20px);
+      }
+    }
+
+    #hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 30px;
+      color: #ff6f61;
+      animation: moveHearts 10s linear infinite;
+    }
+
+    @keyframes moveHearts {
+      0% {
+        transform: translateY(100%) translateX(-50%);
+      }
+      100% {
+        transform: translateY(-100%) translateX(50%);
+      }
+    }
+
+    #envelope-container {
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+    }
+
+    #envelope {
+      width: 100px;
+      height: 60px;
+      background-color: #ff6f61;
+      cursor: pointer;
+      position: relative;
+    }
+
+    #envelope::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent;
+      border-right: 50px solid transparent;
+      border-bottom: 30px solid #ff6f61;
+    }
+
+    #envelope::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ff6f61;
+      clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
+    }
+
+    #envelope-instruction {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #ff6f61;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    #message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+      color: #333;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      display: none;
+      z-index: 10;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    #arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      color: #ff6f61;
+      animation: point 1s infinite alternate;
+    }
+
+    @keyframes point {
+      0% {
+        transform: translate(-50%, -50%);
+      }
+      100% {
+        transform: translate(-50%, -40%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="initial-button">Click Here</button>
+
+  <div id="content" class="hidden">
+    <div id="balloons">
+      <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
+      <div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
+      <div class="balloon" style="left: 50%; animation-delay: 4s;"></div>
+      <div class="balloon" style="left: 70%; animation-delay: 6s;"></div>
+      <div class="balloon" style="left: 90%; animation-delay: 8s;"></div>
+    </div>
+
+    <h1 id="happy-birthday">Happy Birthday My Princess! ❤️</h1>
+
+    <div id="hearts">
+      <div class="heart" style="left: 10%; animation-delay: 1s;">❤️</div>
+      <div class="heart" style="left: 30%; animation-delay: 3s;">❤️</div>
+      <div class="heart" style="left: 50%; animation-delay: 5s;">❤️</div>
+      <div class="heart" style="left: 70%; animation-delay: 7s;">❤️</div>
+      <div class="heart" style="left: 90%; animation-delay: 9s;">❤️</div>
+    </div>
+
+    <div id="envelope-container">
+      <div id="envelope" onclick="showMessage()"></div>
+      <div id="envelope-instruction">Click on the envelope to view your birthday message!</div>
+      <div id="arrow">⬇️</div>
+    </div>
+
+    <div id="message">
+      <p>Happy Birthday My Princess!! ❤️</p>
+      <p>My Love, My sweetheart, My cutiepie, My baby!!</p>
+      <p>Today is the birthday of the most incredible person I know. I am so incredibly lucky to have you in my life, and I feel like every moment with you is a gift. You bring so much light, joy, and love into my world, and I’m beyond thankful for you.</p>
+      <p>With you, I’ve found my best friend, my soulmate, my everything. My love for you grows more every single day, and I can’t wait to see what the future holds for us.</p>
+      <p>On your special day, I want you to know just how much you mean to me. You deserve all the happiness, love, and success in the world, and I will always be by your side, cheering you on and supporting you every step of the way. My heart is yours, today and always. I love you more than I ever thought possible, and I can’t wait to build an amazing future with you.</p>
+      <p>May this year bring you everything you’ve dreamed of and more, because you deserve it all and so much more. I can’t wait to create even more beautiful memories with you.</p>
+      <p>Happy Birthday again, my beautiful, amazing girlfriend. I love you with all my heart. 😘❤️</p>
+      <p>Your biggest fan,</p>
+      <p>Husain Kanchwala</p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('initial-button').addEventListener('click', function() {
+      this.classList.add('hidden');
+      document.getElementById('content').classList.remove('hidden');
+    });
+
+    function showMessage() {
+      document.getElementById('envelope-container').classList.add('hidden');
+      document.getElementById('message').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
